@@ -67,6 +67,7 @@ RUN \
     fail2ban \
     qemu-kvm \
     git-core \
+    gitk \
     htop \
     iptables \
     inetutils-ping \
