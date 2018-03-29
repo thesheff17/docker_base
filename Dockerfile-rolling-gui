@@ -52,6 +52,7 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV EDITOR vim
 ENV SHELL bash
+ENV DEBIAN_FRONTEND noninteractive
 
 # 1 package per line/alphabetical order
 RUN \
