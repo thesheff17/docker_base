@@ -2,7 +2,6 @@
 
 echo "build.sh started..."
 
-
 # first set
 time docker build -f Dockerfile-lts . -t thesheff17/docker_base:lts_latest &
 time docker build -f Dockerfile-rolling . -t thesheff17/docker_base:rolling_latest &
