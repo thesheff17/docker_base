@@ -30,40 +30,10 @@ This program will build a local docker registry
 
 """
 
-from multiprocessing import Pool, cpu_count
 from subprocess import check_output as co
 from subprocess import run
-import logging
 import os
 import time
-import __main__ as main
-
-# automatically detect file name being called
-fileName = main.__file__
-fileName = fileName.replace("./", "")
-fileName = fileName.replace(".py", "")
-fileName = fileName + ".log"
-
-# logging
-logger = logging.getLogger()
-logger.setLevel(logging.DEBUG)
-while len(logger.handlers) > 0:
-    del logger.handlers[0]
-ch = logging.FileHandler(fileName)
-ch.setLevel(logging.DEBUG)
-formatter = logging.Formatter('%(asctime)s - %(filename)s - %(funcName)s \
-                              - %(levelname)s - %(message)s')
-
-ch.setFormatter(formatter)
-logger.addHandler(ch)
-
-# helper function for multiprocessing
-def run_command(command):
-    try:
-        print ("running: " + command)
-        return co(command, shell=True), None
-    except Exception as e:
-        return None, e
 
 
 class Registry(object):
@@ -75,7 +45,8 @@ class Registry(object):
 
     def __init__(self):
 
-        # fake DNS name for pull
+        # This will be the registry DNS name you can pull from
+        # You can use a FQDN. or use host file
         self.fake_dns = "dockerregistry:5000"
 
         # helper for date on thesheff17 images
@@ -179,12 +150,14 @@ class Registry(object):
             run(command1, shell=True, check=True)
 
     def push_registry(self):
-        time.sleep(3)
+        # if I didn't sleep it seemed like the docker registry was not ready
+        time.sleep(5)
         for each in self.images:
             command1 = "docker push localhost:5000/" + each
             run(command1, shell=True, check=True)
 
     def generate_pull_script(self):
+        # script to pull images
         with open("./pull_script.sh", "w") as file:
             file.write("#!/bin/bash\n")
             file.write("\n")
@@ -219,6 +192,5 @@ if __name__ == "__main__":
     done = time.time()
     elapsed = done - start
     total_time = str(elapsed/60).split('.')[0]
-
 
     print("buildRegistry.py completed. Elapse time: " + str(total_time) + " mins.")
