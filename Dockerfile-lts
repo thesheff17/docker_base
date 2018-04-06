@@ -104,7 +104,8 @@ RUN \
     tmux \
     ubuntu-vm-builder \
     unzip \
-    wget && \
+    wget \
+    xmlstarlet && \
     apt-get autoremove && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
