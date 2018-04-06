@@ -112,8 +112,8 @@ class Registry(object):
         self.images.extend(custom_images)
 
         # for testing a single container
-        self.images = [
-            'thesheff17/apt-cacher-ng',]
+        # self.images = [
+        #    'thesheff17/apt-cacher-ng',]
 
     def cleanup_docker_containers(self):
         command1 = "docker ps | wc -l"
