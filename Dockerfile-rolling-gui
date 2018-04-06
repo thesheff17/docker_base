@@ -68,8 +68,10 @@ RUN \
     fail2ban \
     qemu-kvm \
     git-core \
+    gradle \
     htop \
     iptables \
+    jq \
     inetutils-ping \
     lib32ncurses5 \
     lib32ncurses5 \
