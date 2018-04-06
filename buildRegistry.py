@@ -112,8 +112,8 @@ class Registry(object):
         self.images.extend(custom_images)
 
         # for testing a single container
-        # self.images = [
-        #    'thesheff17/apt-cacher-ng',]
+        self.images = [
+            'thesheff17/apt-cacher-ng',]
 
     def cleanup_docker_containers(self):
         command1 = "docker ps | wc -l"
@@ -135,25 +135,24 @@ class Registry(object):
             command2 = "docker rmi -f $(docker images -q)"
             run(command2, shell=True, check=False)
 
-    def pull_containers(self):
-        for each in self.images:
-            command1 = "docker pull " + each
-            run(command1, shell=True, check=True)
-
     def create_registry(self):
         command1 = "docker run -d -p 5000:5000 --restart=always --name registry registry:2"
         run(command1, shell=True, check=True)
 
-    def retag(self):
+    def start(self):
+        time.sleep(5)
         for each in self.images:
+
+            command1 = "docker pull " + each
+            run(command1, shell=True, check=True)
+
             command1 = "docker tag " + each + " localhost:5000/" + each
             run(command1, shell=True, check=True)
 
-    def push_registry(self):
-        # if I didn't sleep it seemed like the docker registry was not ready
-        time.sleep(5)
-        for each in self.images:
             command1 = "docker push localhost:5000/" + each
+            run(command1, shell=True, check=True)
+
+            command1 = "docker rmi -f " + each
             run(command1, shell=True, check=True)
 
     def generate_pull_script(self):
@@ -170,7 +169,7 @@ class Registry(object):
 
             for each in self.images:
                 file.write("docker tag " +  self.fake_dns + "/" + each + " " + each + "\n")
-            
+
             file.write("\n")
             file.write('echo "pull script.sh completed."')
 
@@ -183,10 +182,8 @@ if __name__ == "__main__":
     registry = Registry()
     registry.cleanup_docker_containers()
     registry.clean_all()
-    registry.pull_containers()
     registry.create_registry()
-    registry.retag()
-    registry.push_registry()
+    registry.start()
     registry.generate_pull_script()
 
     done = time.time()
