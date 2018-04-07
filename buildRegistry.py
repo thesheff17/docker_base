@@ -152,8 +152,8 @@ class Registry(object):
             command1 = "docker push localhost:5000/" + each
             run(command1, shell=True, check=True)
 
-            command1 = "docker rmi -f " + each
-            run(command1, shell=True, check=True)
+            # command1 = "docker rmi -f " + each
+            # run(command1, shell=True, check=True)
 
     def generate_pull_script(self):
         # script to pull images
