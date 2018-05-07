@@ -34,6 +34,9 @@ FROM ubuntu:18.04
 # build date
 RUN echo `date` > /root/build_date.txt
 
+# I use a local mirror to test
+RUN echo 'Acquire::http::Proxy "http://172.17.0.1:3142";' > /etc/apt/apt.conf.d/01proxy
+
 # fixes prompts
 RUN \
     apt-get update && \
@@ -116,7 +119,8 @@ RUN \
     xmlstarlet && \
     apt-get autoremove && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    rm /etc/apt/apt.conf.d/01proxy
 
 WORKDIR /root/
 CMD ["/bin/bash"]
