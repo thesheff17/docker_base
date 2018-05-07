@@ -93,7 +93,7 @@ RUN \
     libxml2-dev \
     libxslt1-dev \
     libyaml-dev \
-    locates
+    locate \
     locates \
     lsb-release \
     lxc \
