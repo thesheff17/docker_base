@@ -94,7 +94,6 @@ RUN \
     libxslt1-dev \
     libyaml-dev \
     locate \
-    locates \
     lsb-release \
     lxc \
     mysql-client \
