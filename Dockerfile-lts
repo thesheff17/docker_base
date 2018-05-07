@@ -21,7 +21,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 # MAINTAINER Dan Sheffner
 # this is going to the base container for allot of other containers
@@ -33,9 +33,6 @@ FROM ubuntu:16.04
 
 # build date
 RUN echo `date` > /root/build_date.txt
-
-# I use a local mirror to test
-RUN echo 'Acquire::http::Proxy "http://172.17.0.1:3142";' > /etc/apt/apt.conf.d/01proxy
 
 # fixes prompts
 RUN \
@@ -106,6 +103,20 @@ RUN \
     unzip \
     wget \
     xmlstarlet && \
+    gawk \ # ruby rails
+    libyaml-dev \
+    libsqlite3-dev \
+    sqlite3 \
+    autoconf \
+    libgmp-dev \
+    libgdbm-dev \
+    libncurses5-dev \
+    automake \
+    libtool \
+    bison \
+    libffi-dev \
+    libgmp-dev \
+    libreadline6-dev && \
     apt-get autoremove && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
