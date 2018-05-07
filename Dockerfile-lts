@@ -103,7 +103,7 @@ RUN \
     unzip \
     wget \
     xmlstarlet && \
-    gawk \ # ruby rails
+    gawk \
     libyaml-dev \
     libsqlite3-dev \
     sqlite3 \
