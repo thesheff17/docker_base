@@ -21,7 +21,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-FROM thesheff17/docker_base:rolling-05072018
+# This is passed in at runtime.
+ARG CHANGEDATE
+
+FROM thesheff17/docker_base:rolling-$CHANGEDATE
 
 # MAINTAINER Dan Sheffner
 # this is going to the base container for allot of other containers
