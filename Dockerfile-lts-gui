@@ -21,7 +21,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-FROM ubuntu:16.04
+FROM thesheff17/docker_base:lts_latest-05072018
 
 # MAINTAINER Dan Sheffner
 # this is going to the base container for allot of other containers
@@ -31,11 +31,6 @@ FROM ubuntu:16.04
 # time docker build -f Dockerfile-lts-gui . -t thesheff17/docker_base:lts_gui_latest-`date +"%m%d%Y"`
 # time docker build -f Dockerfile-lts-gui . -t thesheff17/docker_base:lts_gui_latest
 
-# build date
-RUN echo `date` > /root/build_date.txt
-
-# I use a local mirror to test
-RUN echo 'Acquire::http::Proxy "http://172.17.0.1:3142";' > /etc/apt/apt.conf.d/01proxy
 
 # fixes prompts
 RUN \
@@ -54,60 +49,8 @@ ENV EDITOR vim
 ENV SHELL bash
 ENV DEBIAN_FRONTEND noninteractive
 
-# 1 package per line/alphabetical order
-RUN \
-    dpkg --add-architecture i386 && \
-    apt-get update && \
-    apt-get install -y \
-    apt-utils \
-    apache2 \
-    apt-transport-https \
-    apt-utils \
-    build-essential \
-    curl \
-    fail2ban \
-    qemu-kvm \
-    git-core \
-    gradle \
-    htop \
-    iptables \
-    inetutils-ping \
-    jq \
-    lib32ncurses5 \
-    lib32ncurses5 \
-    lib32stdc++6 \
-    lib32z1 \
-    lib32z1 \
-    libapache2-mod-wsgi \
-    libjpeg-dev \
-    libmemcached-dev \
-    libmysqlclient-dev \
-    libssl-dev \
-    libxml2-dev \
-    libxslt1-dev \
-    libvirt-bin \
-    locate \
-    lsb-release \
-    lxc \
-    mysql-client \
-    net-tools \
-    openjdk-8-jdk \
-    openssl \
-    python \
-    python-dev \
-    python-pip \
-    python3-pip \
-    screen \
-    software-properties-common \
-    sudo \
-    tmux \
-    ubuntu-vm-builder \
-    unzip \
-    wget \
-    xmlstarlet && \
-    apt-get autoremove && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# I use a local mirror to test
+RUN echo 'Acquire::http::Proxy "http://172.17.0.1:3142";' > /etc/apt/apt.conf.d/01proxy
 
 # Desktop packages
 RUN \
@@ -119,7 +62,8 @@ RUN \
     virt-manager && \
     apt-get autoremove && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    rm /etc/apt/apt.conf.d/01proxy
 
 # cleanup proxy
 RUN rm /etc/apt/apt.conf.d/01proxy

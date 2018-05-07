@@ -21,7 +21,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-FROM ubuntu:rolling
+FROM thesheff17/docker_base:rolling-05072018
 
 # MAINTAINER Dan Sheffner
 # this is going to the base container for allot of other containers

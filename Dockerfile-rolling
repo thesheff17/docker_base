@@ -59,34 +59,43 @@ RUN \
     dpkg --add-architecture i386 && \
     apt-get update && \
     apt-get install -y \
-    apt-utils \
     apache2 \
     apt-transport-https \
     apt-utils \
+    autoconf \
+    automake \
+    bison \
     build-essential \
     curl \
     fail2ban \
-    qemu-kvm \
+    gawk \
     git-core \
     gitk \
     gradle \
     htop \
+    inetutils-ping \
     iptables \
     jq \
-    inetutils-ping \
-    lib32ncurses5 \
     lib32ncurses5 \
     lib32stdc++6 \
     lib32z1 \
-    lib32z1 \
     libapache2-mod-wsgi \
+    libffi-dev \
+    libgdbm-dev \
+    libgmp-dev \
+    libgmp-dev \
     libjpeg-dev \
     libmemcached-dev \
     libmysqlclient-dev \
+    libncurses5-dev \
+    libreadline6-dev \
+    libsqlite3-dev \
     libssl-dev \
+    libtool \
+    libvirt-bin \
     libxml2-dev \
     libxslt1-dev \
-    libvirt-bin \
+    libyaml-dev \
     locate \
     lsb-release \
     lxc \
@@ -98,8 +107,10 @@ RUN \
     python-dev \
     python-pip \
     python3-pip \
+    qemu-kvm \
     screen \
     software-properties-common \
+    sqlite3 \
     sudo \
     tmux \
     ubuntu-vm-builder \
