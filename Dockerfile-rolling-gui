@@ -24,7 +24,7 @@
 # This is passed in at runtime.
 ARG CHANGEDATE
 
-FROM thesheff17/docker_base:docker_base:rolling_latest-$CHANGEDATE
+FROM thesheff17/docker_base:rolling_latest-$CHANGEDATE
 
 # MAINTAINER Dan Sheffner
 # this is going to the base container for allot of other containers
