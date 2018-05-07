@@ -85,7 +85,7 @@ RUN \
     libmemcached-dev \
     libmysqlclient-dev \
     libncurses5-dev \
-    libreadline6-dev && \
+    libreadline6-dev \
     libsqlite3-dev \
     libssl-dev \
     libtool \
