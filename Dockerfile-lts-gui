@@ -65,8 +65,5 @@ RUN \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     rm /etc/apt/apt.conf.d/01proxy
 
-# cleanup proxy
-RUN rm /etc/apt/apt.conf.d/01proxy
-
 WORKDIR /root/
 CMD ["/bin/bash"]
