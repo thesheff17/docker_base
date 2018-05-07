@@ -119,10 +119,8 @@ RUN \
     xmlstarlet && \
     apt-get autoremove && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-# cleanup proxy
-RUN rm /etc/apt/apt.conf.d/01proxy
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    rm /etc/apt/apt.conf.d/01proxy
 
 WORKDIR /root/
 CMD ["/bin/bash"]
